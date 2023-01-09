@@ -17,6 +17,11 @@ namespace TextAnalysis
                 .ToList();
         }
 
+        /// <summary>
+        /// Парсинг предложений
+        /// </summary>
+        /// <param name="sentence">Предложение для парсинга</param>
+        /// <returns>Возвращает список слов</returns>
         private static List<string> Parse(this string sentence)
         {
             return sentence
@@ -25,6 +30,11 @@ namespace TextAnalysis
                 .ToList();
         }
 
+        /// <summary>
+        /// Замена не буквенных символов на пробел
+        /// </summary>
+        /// <param name="sentence"></param>
+        /// <returns>Возвращает строку в которой все не буквенные символы заменены</returns>
         private static string ReplaceNotLetter(this string sentence)
         {
             return new string(sentence

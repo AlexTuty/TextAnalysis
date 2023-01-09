@@ -69,13 +69,10 @@ namespace TextAnalysis
         {
             foreach (var ngram in intermedia.Keys)
             {
-                var endWord = default(string);
-                var keyValues = new Dictionary<string, int>();
-                if (intermedia.TryGetValue(ngram, out keyValues))
-                    endWord = SearchMax(keyValues);
+                if (intermedia.TryGetValue(ngram, out Dictionary<string, int> keyValues))
+                    result[ngram] = SearchMax(keyValues);
                 else
                     continue;
-                result[ngram] = endWord;
             }
         }
 
