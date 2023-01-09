@@ -14,10 +14,10 @@ namespace TextAnalysis
                 .Split(separators, StringSplitOptions.RemoveEmptyEntries)
                 .ParseSentences()
                 .Select(sentence => sentence
-                .ToLower()
-                .ReplaceNotLetter(' ')
-                .Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
-                .ToList())
+                    .ToLower()
+                    .ReplaceNotLetter(' ')
+                    .Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
+                    .ToList())
                 .ToList();
         }
 
@@ -33,7 +33,7 @@ namespace TextAnalysis
                 else if (str != null)
                 {
                     yield return str;
-                    str = default(string);
+                    str = default;
                 }
                 else
                     yield return sentence;

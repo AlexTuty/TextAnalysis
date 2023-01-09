@@ -159,14 +159,4 @@ namespace TextAnalysis
         }
     }
 }
-//textToSentences.DelNotLetter(x => int.TryParse(x, out var z) ? null : x);
-
-
-//private static void DelNotLetter(this string[] sentences, Func<string, string> func)
-//{
-//    for (int i = 0; i < sentences.Length; i++)
-//    {
-//        sentences[i] = func(sentences[i]);
-//    }
-//}
 
