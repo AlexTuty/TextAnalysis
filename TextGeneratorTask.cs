@@ -16,20 +16,18 @@ namespace TextAnalysis
             if (wordsCount == 0 && nextWords.GetEnumerator().MoveNext())
                 return nextWords.Keys.First();
 
-            var nextWord = new List<string>() { phraseBeginning};
+            var nextWord = new List<string>() { phraseBeginning };
             for (int i = 1; i <= wordsCount; i++)
             {
                 var ngram = ReturnNgram(string.Join(" ", nextWord));
-                var value = default(string);
-                if (!TryGetValueNextWord(nextWords, ngram, out value))
+                if (!TryGetValueNextWord(nextWords, ngram, out string value))
                     break;
                 nextWord.Add(value);
             }
             return string.Join(" ", nextWord);
         }
 
-        internal static bool TryGetValueNextWord(
-            Dictionary<string, string> nextWords, string[] ngram, out string exitWord)
+        internal static bool TryGetValueNextWord(Dictionary<string, string> nextWords, string[] ngram, out string exitWord)
         {
             return nextWords.TryGetValue(ngram[0], out exitWord)
                 || ngram.Length >= 2 && nextWords.TryGetValue(ngram[1], out exitWord);
@@ -39,8 +37,8 @@ namespace TextAnalysis
         {
             var nextWord = phraseBeginning.Split(' ');
             return nextWord.Length >= 2
-                ? new string[] 
-                { 
+                ? new string[]
+                {
                     nextWord[nextWord.Length - 2] + " " + nextWord[nextWord.Length - 1],
                     nextWord[nextWord.Length - 1]
                 }
