@@ -12,42 +12,25 @@ namespace TextAnalysis
 
             return text
                 .Split(separators, StringSplitOptions.RemoveEmptyEntries)
-                .ParseSentences()
-                .Select(sentence => sentence
-                    .ToLower()
-                    .ReplaceNotLetter(' ')
-                    .Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
-                    .ToList())
+                .Select(sentence => sentence.Parse())
+                .Where(sentence => sentence.Count != 0)
                 .ToList();
         }
 
-        private static IEnumerable<string> ParseSentences(this IEnumerable<string> sentences)
+        private static List<string> Parse(this string sentence)
         {
-            var str = default(string);
-            foreach (var sentence in sentences)
-            {
-                if (sentence.All(c => !char.IsLetter(c)))
-                    continue;
-                else if (sentence.All(c => char.IsUpper(c)) && sentence.Length > 1)
-                    str += sentence;
-                else if (str != null)
-                {
-                    yield return str;
-                    str = default;
-                }
-                else
-                    yield return sentence;
-            }
+            return sentence
+                .ReplaceNotLetter()
+                .Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
+                .ToList();
         }
 
-        private static string ReplaceNotLetter(this string str, char newChar)
+        private static string ReplaceNotLetter(this string sentence)
         {
-            foreach (var item in str)
-            {
-                if (!char.IsLetter(item) && item != '\'')
-                    str = str.Replace(item, newChar);
-            }
-            return str;
+            return new string(sentence
+                .Select(ch => char.IsLetter(ch) || ch == '\'' ? char.ToLower(ch) : ' ')
+                .ToArray());
         }
     }
 }
+

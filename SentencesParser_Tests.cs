@@ -24,7 +24,10 @@ namespace TextAnalysis
         public void ReturnCorrectResult_OnTextWithOneSentenceWithTwoWords() // с одним предложением и двумя словами
         {
             var text = "b, c";
-            var expected = new List<List<string>> { new List<string> { "b", "c" } };
+            var expected = new List<List<string>>
+            {
+                new List<string> { "b", "c" }
+            };
             var actual = SentencesParserTask.ParseSentences(text);
             AssertAllSentencesEqual(expected, actual, text);
         }
@@ -34,7 +37,10 @@ namespace TextAnalysis
         public void ReturnCorrectResult_OnTextWithOneSentence_WithWordContainingApostrophe() // с одним предложением со словом, содержащим апостроф
         {
             var text = "it's";
-            var expected = new List<List<string>> { new List<string> { "it's" } };
+            var expected = new List<List<string>>
+            {
+                new List<string> { "it's" }
+            };
             var actual = SentencesParserTask.ParseSentences(text);
             AssertAllSentencesEqual(expected, actual, text);
         }
@@ -134,7 +140,7 @@ namespace TextAnalysis
 
             AssertAllSentencesEqual(expected, actual, text);
         }
-       
+
         protected static void AssertAllSentencesEqual(
             List<List<string>> expectedSentences,
             List<List<string>> actualSentences,
