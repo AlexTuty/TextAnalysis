@@ -6,19 +6,7 @@ namespace TextAnalysis
 {
     [TestFixture]
     public class TextGenerator_Tests
-    {
-        //[TestCase("x", "x")]
-        //[TestCase("y", "y")]
-        //[TestCase("a x", "a x")]
-        //[TestCase("a b x", "b x")]
-        //[TestCase("y z x", "z x")]
-        //[TestCase("w x y z", "y z")]
-        //public void SplitWords(string phraseBeginning, string expectedNextWord)
-        //{
-        //    var actual = TextGeneratorTask.ReturnLastLine(phraseBeginning);
-        //    Assert.AreEqual(expectedNextWord, actual);
-        //}
-
+    {       
         [TestCase("x", 10)]
         [TestCase("a b c", 1)]
         [Order(00)]
@@ -46,7 +34,6 @@ namespace TextAnalysis
         }
 
         [TestCase("x", "y z")]
-        [TestCase("y", "z x")]
         [TestCase("y", "z x")]
         [TestCase("a", "b")]
         [TestCase("z", "x y")]
